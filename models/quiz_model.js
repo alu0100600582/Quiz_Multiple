@@ -3,11 +3,22 @@ var Pregunta = require('../models/pregunta.js');
 var PreguntaCorta = require('../models/PreguntaCorta.js');
 var PreguntaLarga = require('../models/PreguntaLarga.js');
 var Respuesta = require('../models/respuesta.js');
+var PreguntaSimple = require('../models/PreguntaSimple.js');
+var PreguntaMultiple = require('../models/PreguntaMultiple.js');
 
 
 function Quiz() {
   AbstractQuiz.call(this);
   this.q.push(
+
+    { pregunta: new PreguntaSimple('¿Capital de Grecia?', ['Madrid', 'Roma', 'Atenas']),
+          respuesta: new Respuesta('Atenas')
+        },
+
+        { pregunta: new PreguntaMultiple('¿Qué animales son mamíferos?', ['Ornitorrinco', 'Canguro', 'Ballena', 'Gato']),
+          respuesta: new Respuesta(['Ballena', 'Gato'])
+        },
+
 
     {
       pregunta: new PreguntaCorta('¿Capital de Italia?'),
