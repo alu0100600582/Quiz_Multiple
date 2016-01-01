@@ -52,4 +52,4 @@ Mi GitHub page: http://alu0100600582.github.io/
 
 Repositorio Github: https://github.com/alu0100600582/Quiz_Multiple
 
-Despliegue en Heroku: http://quiz-sytw.herokuapp.com/
+Despliegue en Heroku: https://quiz-multiple.herokuapp.com/
