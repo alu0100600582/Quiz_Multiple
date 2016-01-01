@@ -1,8 +1,5 @@
-"use stric";
-
-function Pregunta(enunciado){
-  this.enunciado = enunciado;
+function Pregunta(){
+  this.pregunta_;
 }
-
 
 module.exports = Pregunta;

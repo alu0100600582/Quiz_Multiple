@@ -1,34 +1,34 @@
-function Respuesta(respuesta){
+function Respuesta(x){
 
-
-
-  if(typeof(this.respuesta) === 'string' || typeof(this.respuesta) === 'number') {
-    return function(x){return x === respuesta;};
+  // Si es entero o cadena
+  if(typeof(x)==='string' || typeof(x)==='number'){
+    return function(res){return res === x;};
   }
 
-  else if(respuesta instanceof RegExp){
-    return function(x){return x.match(respuesta);};
+  // Si es una expresión regular
+  else if(x instanceof RegExp){
+    return function(res){return res.match(x);};
   }
 
-  else if(respuesta instanceof Array){
-     return function(x){
-       if(respuesta.length != x.length) return false;
+  // Si es un array
+  else if(x instanceof Array){
+    return function(res){
+      if(x.length != res.length) return false;
 
-       var objeto = true;
+      var opc = true;
 
-       for(var i=0; i<respuesta.length; i++){
-         if(respuesta[i] != x[i]) objeto = false;
-       }
+      for(var i=0; i<x.length; i++){
+        if(x[i] != res[i]) opc = false;
+      }
 
-       return objeto;
-     };
-   }
+      return opc;
+    };
+  }
 
-   else {
-     return respuesta;
-   }
-
+  // Si es una funcion
+  else {
+    return x;
+  }
 }
-
 
 module.exports = Respuesta;

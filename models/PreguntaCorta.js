@@ -1,11 +1,22 @@
-"use stric";
-
 var Pregunta = require('../models/pregunta.js');
 
+function PreguntaCorta(x) {
+  Pregunta.call(this);
 
-function PreguntaCorta(enunciado){
-  Pregunta.call(this,enunciado);
-  this.entrada = "<input type='text' name='respuesta'>";
+  this.pregunta_ = x;
+  this.area_ = "<input type='text' name='respuesta' placeholder='Responda aquí'' />";
+}
+
+PreguntaCorta.prototype = new Pregunta();
+
+PreguntaCorta.prototype.constructor = PreguntaCorta;
+
+PreguntaCorta.prototype.get_area = function(){
+  return this.area_;
+}
+
+PreguntaCorta.prototype.get_pregunta = function(){
+  return this.pregunta_;
 }
 
 module.exports = PreguntaCorta;
