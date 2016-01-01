@@ -1,37 +1,45 @@
-## Práctica: Quiz. Diseño Adaptativo, Despliegue en Heroku, Mejoras.
-
+## Práctica: Quiz. Preguntas de Selección Simple y Múltiple
 ### Descripción de la Práctica
 
-En esta práctica vamos a crear un Diseño Adaptativo para nuestra aplicación Quiz y también vamos a desplegar la aplicación en Heroku.
+En esta práctica vamos a implementar preguntas de selección simple y múltiple a nuestro proyecto Quiz.
 
-### Requisitos de la Práctica: Añada a la práctica anterior del Quiz
+### Requisitos de la Práctica:
 
-    - Diseño adaptativo
+Añada preguntas de selección simple:
 
-    - Despliegue en Heroku
+seleccion múltiple
 
-    - Defina una clase o factoría Respuesta cuyo constructor/factoría admita como argumento:
-          - Una función
+y de selección múltiple:
 
-          - Una expresión regular regexp (el constructor/factoría lo convierte internamente
-            a formato función así: function(x) { return x.match(regexp);})
+selección simple
 
-          - Una cadena string o un número number (el constructor/factoría lo convierte a
-            formato función así:
-            function(x) { return x === 'string'; } o bien function(x) { return x === number; })
+Estas dos preguntas podrían construirse/formularse como sigue:
 
-    - Un objeto Respuesta es siempre una función que recibe un argumento con la respuesta
-    escrita por el alumno y retorna true si y sólo si la respuesta es correcta.
+            this.q.push(
+              { pregunta: new PreguntaSeleccionSimple('¿Capital de Grecia?',·
+                                                      ['Madrid', 'Roma', 'Atenas']),
+                respuesta: new Respuesta('Atenas')
+              },  
+              { pregunta: new PreguntaSeleccionMultiple('¿Que animales son mamíferos?',·
+                                        ['Ornitorrinco', 'Canguro', 'Ballena', 'Gato']),
+                respuesta: new Respuesta(['Ballena', 'Gato'])
 
-    - Añada una clase Pregunta de la que heredan PreguntaCorta (que se representa en la vista
-      mediante un input) y PreguntaLarga (que se representará mediante una textarea).
+Para las de selección múltiple la respuesta viene caracterizada por un Array por lo que deberá actualizar la factoría o constructor Respuesta:
 
-      {
-        pregunta: new PreguntaCorta('¿En que año se  descubrió América?<br/>'),
-        respuesta: new Respuesta(1492)
-      },
+        ...
+        else if (x instanceof Array){
+                  return function(res){
+                       ...  
+                 };  
+        }
 
-    - Reescriba el cuestionario con la nueva sintáxis
+Cada tipo de pregunta tiene un atributo o método vista o html o como lo quiera llamar. Para construir el valor de dicha propiedad procure que su código javascript no esté lleno de concatenaciones de cadenas, si es necesario use templates.
+
+Queremos que la respuesta llegue a nuestra aplicación en forma de Array. Si añadimos como sufijo unos corchetes al nombre de nuestro select , Express (y Rails, PHP, etc.) dejarán los datos enviados en un array:
+
+                      <select name="respuesta[]" multiple>
+                           ...
+                      </select>
 
 
 
@@ -42,6 +50,6 @@ Enlace a la Comunidad de la Asignatura: https://plus.google.com/u/1/communities/
 
 Mi GitHub page: http://alu0100600582.github.io/
 
-Repositorio Github: https://github.com/alu0100600582/Heroku_Adaptativo
+Repositorio Github: https://github.com/alu0100600582/Quiz_Multiple
 
 Despliegue en Heroku: http://quiz-sytw.herokuapp.com/
